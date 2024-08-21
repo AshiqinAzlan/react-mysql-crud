@@ -11,16 +11,17 @@ function CreateStudent() {
   const navigate = useNavigate(); // useNavigate hook to navigate programmatically
 
   function handleSubmit(e) {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault();
+    console.log("Submitting data:", { name, email, marks, grade, city });
     axios
       .post("http://localhost:5001/create", { name, email, marks, grade, city })
       .then((res) => {
         console.log(res);
         alert("Student created successfully!");
-        navigate("/"); // Navigate to the homepage after successful submission
+        navigate("/");
       })
       .catch((err) => {
-        console.error(err);
+        console.error("Failed to create student:", err.response || err);
         alert("Failed to create student. Please try again.");
       });
   }
